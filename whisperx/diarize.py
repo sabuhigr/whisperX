@@ -18,6 +18,7 @@ class DiarizationPipeline:
     def __call__(self, audio, min_speakers=None, max_speakers=None):
         segments = self.model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
         diarize_df = pd.DataFrame(segments.itertracks(yield_label=True))
+        print("Diarize_df 0 is: {}".format(diarize_df[0]))
         diarize_df['start'] = diarize_df[0].apply(lambda x: x.start)
         diarize_df['end'] = diarize_df[0].apply(lambda x: x.end)
         diarize_df.rename(columns={2: "speaker"}, inplace=True)
