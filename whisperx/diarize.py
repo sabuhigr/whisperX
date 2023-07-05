@@ -15,6 +15,14 @@ class DiarizationPipeline:
             device = torch.device(device)
         self.model = Pipeline.from_pretrained(model_name, use_auth_token=use_auth_token).to(device)
 
+    def __call__(self, audio, min_speakers=None, max_speakers=None):
+        segments = self.model(audio, min_speakers=min_speakers, max_speakers=max_speakers)
+        diarize_df = pd.DataFrame(segments.itertracks(yield_label=True))
+        diarize_df['start'] = diarize_df[0].apply(lambda x: x.start)
+        diarize_df['end'] = diarize_df[0].apply(lambda x: x.end)
+        diarize_df.rename(columns={2: "speaker"}, inplace=True)
+        return diarize_df
+
 
 def assign_word_speakers(diarize_df, transcript_result, fill_nearest=False):
     transcript_segments = transcript_result["segments"]
