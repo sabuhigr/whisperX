@@ -45,7 +45,7 @@ DEFAULT_ALIGN_MODELS_HF = {
     "el": "jonatasgrosman/wav2vec2-large-xlsr-53-greek",
     "tr": "mpoyraz/wav2vec2-xls-r-300m-cv7-turkish",
     "da": "saattrupdan/wav2vec2-xls-r-300m-ftspeech",
-    "he": "imvladikon/wav2vec2-xls-r-300m-hebrew",
+    "he": "imvladikon/wav2vec2-large-xlsr-53-hebrew",
     "vi": 'nguyenvulebinh/wav2vec2-base-vi',
     "ko": "kresnik/wav2vec2-large-xlsr-korean",
     "ur": "kingabzpro/wav2vec2-large-xls-r-300m-Urdu",
